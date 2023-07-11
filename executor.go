@@ -85,7 +85,7 @@ func (e *Executor[Data]) getNextStepDefinitionForExecution(ctx context.Context, 
 
 	lastLogEntry, err := e.transactionLogger.GetLastLogEntry(ctx, sagaID)
 	if err != nil {
-		if err == ErrLastTransactionLogEntryIsNotFound {
+		if err == ErrTransactionLastLogEntryIsNotFound {
 			return e.sagaDefinition.Steps[0], false, nil
 		}
 		return StepDefinition[Data]{}, false, fmt.Errorf("get transaction last log entry error: %w", err)
